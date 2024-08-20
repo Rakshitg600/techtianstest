@@ -45,7 +45,14 @@ a {
     background-color: rgb(229, 98, 177);
     color: white;
     text-decoration: none;
+    transition: background-color 0.3s ease, color 0.3s ease;
 }
+
+a:hover {
+    background-color: white;
+    color: rgb(229, 98, 177);
+}
+
 
 /* Media Queries for Responsiveness */
 
