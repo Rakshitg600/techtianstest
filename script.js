@@ -1,21 +1,23 @@
-window.addEventListener('resize', adjustCardWidths);
-window.addEventListener('load', adjustCardWidths);
+let currentSlide = 0;
+const slides = document.querySelectorAll('.slide');
 
-function adjustCardWidths() {
-    const container = document.querySelector('.content');
-    const cards = document.querySelectorAll('.card');
-    const containerWidth = container.clientWidth;
-    let cardWidthPercentage;
-
-    if (containerWidth >= 1200) {
-        cardWidthPercentage = 30; // 3 cards per row for wide screens
-    } else if (containerWidth >= 800) {
-        cardWidthPercentage = 45; // 2 cards per row for medium screens
+function showSlide(index) {
+    if (index >= slides.length) {
+        currentSlide = 0;
+    } else if (index < 0) {
+        currentSlide = slides.length - 1;
     } else {
-        cardWidthPercentage = 100; // 1 card per row for small screens
+        currentSlide = index;
     }
 
-    cards.forEach(card => {
-        card.style.width = `${cardWidthPercentage}%`;
+    slides.forEach((slide, i) => {
+        slide.style.transform = `translateX(-${currentSlide * 100}%)`;
     });
 }
+
+function moveSlide(direction) {
+    showSlide(currentSlide + direction);
+}
+
+// Initialize the first slide
+showSlide(currentSlide);
